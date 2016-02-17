@@ -1,26 +1,37 @@
 package com.k1.gandalf;
 
+import android.graphics.Color;
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-
 import android.widget.TextView;
+
+import com.k1.gandalf.view.RTLViewPager;
+import com.mikepenz.actionitembadge.library.ActionItemBadge;
+import com.mikepenz.actionitembadge.library.ActionItemBadgeAdder;
+import com.mikepenz.fontawesome_typeface_library.FontAwesome;
+
+import java.text.DateFormatSymbols;
+
+import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final String TAG = FragmentActivity.class.getSimpleName();
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -31,10 +42,20 @@ public class MainActivity extends AppCompatActivity {
      */
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
+    String[] titles = new String[]{
+
+            "صحفه اول",
+            "صحفه دوم",
+            "صحفه سوم",
+    };
+
     /**
      * The {@link ViewPager} that will host the section contents.
      */
-    private ViewPager mViewPager;
+    private RTLViewPager mViewPager;
+    private String[] months;
+    private TabLayout mTabLayout;
+    private FuckinPagerAdapter mFuckinAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,23 +64,59 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        // Create the adapter that will return a fragment for each of the three
+
+
+        months = DateFormatSymbols.getInstance().getMonths();
+        // Create the mFuckinAdapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
-        // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.container);
-        mViewPager.setAdapter(mSectionsPagerAdapter);
+        // Set up the ViewPager with the sections mFuckinAdapter.
+        mViewPager = (RTLViewPager) findViewById(R.id.container);
+//        mViewPager.setAdapter(mSectionsPagerAdapter);
+        mFuckinAdapter = new FuckinPagerAdapter();
+        mViewPager.setAdapter(mFuckinAdapter);
+        mTabLayout = (TabLayout) findViewById(R.id.tabs);
+//        tabLayout.setupWithViewPager(mViewPager);
+        mTabLayout.removeAllTabs();
+        for (int i = 0; i < mFuckinAdapter.getCount(); i++) {
+            mTabLayout.addTab(mTabLayout.newTab().setText(titles[i]));
+        }
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(mViewPager);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        mTabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public void onTabSelected(TabLayout.Tab tab) {
+                mViewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+//        mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                Log.i(TAG, "onPageScrolled : " + position
+                        + " positionOffset : " + positionOffset
+                        + " positionOffsetPixels :" + positionOffsetPixels);
+                mTabLayout.setScrollPosition(position, positionOffsetPixels, true);
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                mTabLayout.setScrollPosition(position, 0, true);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
             }
         });
 
@@ -70,6 +127,16 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
+        new ActionItemBadgeAdder().act(this)
+                .menu(menu)
+                .title(R.string.define_font_fontawesome)
+                .itemDetails(0, 02, 1)
+                .showAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS)
+                .add(0);
+        ActionItemBadge.update(this, menu.findItem(R.id.badge),
+                FontAwesome.Icon.faw_android,
+                0, 0);
+
         return true;
     }
 
@@ -123,6 +190,42 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+    /**
+     * Fuckin PagerAdapter
+     */
+    public class FuckinPagerAdapter extends PagerAdapter {
+
+        @Override
+        public int getCount() {
+            return titles.length;
+        }
+
+        @Override
+        public boolean isViewFromObject(View view, Object object) {
+            return object.equals(view.getTag());
+        }
+
+        @Override
+        public Object instantiateItem(final ViewGroup container, int position) {
+            final String item = titles[position];
+            final TextView text = new TextView(container.getContext());
+            text.setGravity(Gravity.CENTER);
+            text.setBackgroundColor(Color.WHITE);
+            text.setTextColor(Color.BLACK);
+            text.setTextSize(20);
+            text.setText(item);
+            container.addView(text, MATCH_PARENT, MATCH_PARENT);
+            text.setTag(item);
+            return item;
+        }
+
+        @Override
+        public void destroyItem(ViewGroup container, int position, Object object) {
+            container.removeView(container.findViewWithTag(object));
+        }
+    }
+
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.
@@ -143,20 +246,12 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 3;
+            return months.length;
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
-            switch (position) {
-                case 0:
-                    return "SECTION 1";
-                case 1:
-                    return "SECTION 2";
-                case 2:
-                    return "SECTION 3";
-            }
-            return null;
+            return months[position];
         }
     }
 }

@@ -24,4 +24,15 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.android.support:design:23.1.1'
+    //ActionItemBadge
+    compile 'com.mikepenz:actionitembadge:3.2.2@aar'
+    //SUB-DEPENDENCIES
+    //Android-Iconics - used to provide an easy API for icons
+    compile 'com.mikepenz:iconics-core:2.5.5@aar'
+    compile 'com.mikepenz:fontawesome-typeface:4.5.0.1@aar'
+    compile 'com.mikepenz:material-design-iconic-typeface:2.2.0.1@aar'
+    compile 'com.mikepenz:google-material-typeface:2.2.0.1.original@aar'
+    compile 'uk.co.chrisjenx:calligraphy:2.1.0'
+
+
 }
