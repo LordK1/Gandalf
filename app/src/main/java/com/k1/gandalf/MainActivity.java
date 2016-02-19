@@ -1,6 +1,7 @@
 package com.k1.gandalf;
 
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -11,7 +12,6 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.k1.gandalf.callback.TabLayoutOnPageChangeListener;
 import com.k1.gandalf.view.RTLViewPager;
 import com.mikepenz.actionitembadge.library.ActionItemBadge;
 import com.mikepenz.actionitembadge.library.ActionItemBadgeAdder;
@@ -56,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
     private String[] months;
     private TabLayout mTabLayout;
     private FuckinPagerAdapter mFuckinAdapter;
+    private OnRTLTabSelectedListener mOnTabSelectedListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
         setSupportActionBar(toolbar);
 
 
@@ -73,52 +76,21 @@ public class MainActivity extends AppCompatActivity {
 
         // Set up the ViewPager with the sections mFuckinAdapter.
         mViewPager = (RTLViewPager) findViewById(R.id.container);
-//        mViewPager.setAdapter(mSectionsPagerAdapter);
-        mFuckinAdapter = new FuckinPagerAdapter();
-        mViewPager.setAdapter(mFuckinAdapter);
+        mViewPager.setAdapter(mSectionsPagerAdapter);
+//        mFuckinAdapter = new FuckinPagerAdapter();
+//        mViewPager.setAdapter(mFuckinAdapter);
         mTabLayout = (TabLayout) findViewById(R.id.tabs);
 //        tabLayout.setupWithViewPager(mViewPager);
         mTabLayout.removeAllTabs();
-        for (int i = 0; i < mFuckinAdapter.getCount(); i++) {
+        for (int i = 0; i < mSectionsPagerAdapter.getCount(); i++) {
             mTabLayout.addTab(mTabLayout.newTab().setText(titles[i]));
         }
 
-        mTabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                mViewPager.setCurrentItem(tab.getPosition());
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
+        mOnTabSelectedListener = new OnRTLTabSelectedListener();
+        mTabLayout.setOnTabSelectedListener(mOnTabSelectedListener);
 //        mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));
-        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                Log.i(TAG, "onPageScrolled : " + position
-                        + " positionOffset : " + positionOffset
-                        + " positionOffsetPixels :" + positionOffsetPixels);
-                mTabLayout.setScrollPosition(position, positionOffsetPixels, true);
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                mTabLayout.setScrollPosition(position, 0, true);
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
+        mViewPager.addOnPageChangeListener(
+                new TabLayoutOnPageChangeListener(mTabLayout, mOnTabSelectedListener));
 
     }
 
@@ -213,6 +185,7 @@ public class MainActivity extends AppCompatActivity {
             text.setGravity(Gravity.CENTER);
             text.setBackgroundColor(Color.WHITE);
             text.setTextColor(Color.BLACK);
+            text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/Gandom.ttf"));
             text.setTextSize(20);
             text.setText(item);
             container.addView(text, MATCH_PARENT, MATCH_PARENT);
@@ -246,12 +219,29 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return months.length;
+            return titles.length;
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
-            return months[position];
+            return titles[position];
+        }
+    }
+
+    private class OnRTLTabSelectedListener implements TabLayout.OnTabSelectedListener {
+        @Override
+        public void onTabSelected(TabLayout.Tab tab) {
+            mViewPager.setCurrentItem(tab.getPosition());
+        }
+
+        @Override
+        public void onTabUnselected(TabLayout.Tab tab) {
+
+        }
+
+        @Override
+        public void onTabReselected(TabLayout.Tab tab) {
+
         }
     }
 }

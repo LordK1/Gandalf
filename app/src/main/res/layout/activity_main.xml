@@ -23,6 +23,22 @@
             app:layout_scrollFlags="scroll|enterAlways"
             app:popupTheme="@style/AppTheme.PopupOverlay">
 
+            <com.joanzapata.iconify.widget.IconTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:shadowColor="@color/white"
+                android:shadowRadius="5"
+                android:text="{fa-android}"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/toolbar_title_text_view"
+                fontPath="fonts/Gandom.ttf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="گندالو"
+                android:textSize="18sp" />
+
         </android.support.v7.widget.Toolbar>
 
         <android.support.design.widget.TabLayout

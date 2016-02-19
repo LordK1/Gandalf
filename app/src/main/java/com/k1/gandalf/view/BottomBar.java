@@ -2,6 +2,7 @@ package com.k1.gandalf.view;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
@@ -56,5 +57,6 @@ public class BottomBar extends LinearLayout {
         onSaleTextView = (TextView) root.findViewById(R.id.txt_view_sale);
         myFlyersTextView = (TextView) root.findViewById(R.id.txt_view_my_flyers);
         flyersTextView = (TextView) root.findViewById(R.id.txt_view_flyers);
+
     }
 }

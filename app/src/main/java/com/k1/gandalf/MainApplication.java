@@ -5,9 +5,11 @@ import android.content.Context;
 import android.content.res.Configuration;
 import android.text.TextUtils;
 
+import com.joanzapata.iconify.Iconify;
+import com.joanzapata.iconify.fonts.FontAwesomeModule;
+
 import java.util.Locale;
 
-import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 /**
  * Created by k1 on 12/27/15.
@@ -23,12 +25,8 @@ public class MainApplication extends Application {
         super.onCreate();
         updateLocale(this, FA_LANG);
 
-        CalligraphyConfig.initDefault(
-                new CalligraphyConfig.Builder()
-                        .setDefaultFontPath("fonts/IRAN_Sans_Bold.ttf")
-                        .setFontAttrId(R.attr.fontPath)
-                        .build()
-        );
+        // Iconify setup
+        Iconify.with(new FontAwesomeModule());
     }
 
     /**

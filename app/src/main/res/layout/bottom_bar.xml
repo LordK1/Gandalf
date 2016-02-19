@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/bottom_bar"
     android:layout_width="match_parent"
     android:layout_height="55dp"
@@ -11,52 +12,54 @@
     android:orientation="horizontal"
     android:weightSum="100">
 
-    <TextView
+    <com.k1.gandalf.view.TypefaceTextView
         android:id="@+id/txt_view_flyers"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:layout_weight="25"
         android:gravity="center"
-        android:text="Flyers"
+        android:text="آگهی ها"
         android:textAlignment="center"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        app:typeface="fonts/Mj_Ramollah.ttf" />
 
-    <TextView
+    <com.k1.gandalf.view.TypefaceTextView
         android:id="@+id/txt_view_my_flyers"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:layout_weight="25"
         android:gravity="center"
-        android:text="My Flyers"
+        android:text="واس ماس"
         android:textAlignment="center"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        app:typeface="fonts/Mj_Ramollah.ttf" />
 
-    <TextView
+    <com.k1.gandalf.view.TypefaceTextView
         android:id="@+id/txt_view_sale"
-        fontPath="fonts/material-icon-font.ttf"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:layout_weight="25"
         android:drawablePadding="0dp"
         android:gravity="center"
-        android:text="on sale"
+        android:text="بدو بدو"
         android:textAlignment="center"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        app:typeface="fonts/Fantezy Normal.ttf" />
 
-    <TextView
+    <com.k1.gandalf.view.TypefaceTextView
         android:id="@+id/txt_view_dashboard"
-        fontPath="fonts/IRAN_Sans.ttf"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="25"
         android:drawablePadding="0dp"
         android:gravity="center"
-        android:text="dashboard"
+        android:text="داشبورد"
         android:textAlignment="center"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        app:typeface="fonts/Divani.ttf" />
 
 
 </LinearLayout>
