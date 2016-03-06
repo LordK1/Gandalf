@@ -45,6 +45,8 @@ public class TypefaceTextView extends TextView {
             );
             try {
                 final String typefaceString = array.getString(R.styleable.TypefaceTextView_typeface);
+                final float dimension = array.getDimension(R.styleable.TypefaceTextView_showTextRef, 0f);
+
                 mDefinedTypeface = Typeface.createFromAsset(context.getAssets(), typefaceString);
                 Log.i(TAG, "typeFaceString : " + typefaceString);
             } catch (Exception e) {

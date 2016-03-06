@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+    Flaticoniconfont:Flaticon
+    Creationdate:23/02/201619:13
+    -->
+    <string name="flaticon_animal">&#xf100;</string>
+    <string name="flaticonـarrow">&#xf101;</string>
+    <string name="flaticonـbag">&#xf102;</string>
+    <string name="flaticonـbook">&#xf103;</string>
+    <string name="flaticonـbox">&#xf104;</string>
+    <string name="flaticonـboxـ1">&#xf105;</string>
+    <string name="flaticonـboxـ2">&#xf106;</string>
+    <string name="flaticonـbulb">&#xf107;</string>
+    <string name="flaticonـcase">&#xf108;</string>
+    <string name="flaticonـclock">&#xf109;</string>
+    <string name="flaticonـcommerce">&#xf10a;</string>
+    <string name="flaticonـcommerceـ1">&#xf10b;</string>
+    <string name="flaticonـdiscount">&#xf10c;</string>
+    <string name="flaticonـhands">&#xf10d;</string>
+    <string name="flaticonـinterface">&#xf10e;</string>
+    <string name="flaticonـlocation">&#xf10f;</string>
+    <string name="flaticonـlocationـ1">&#xf110;</string>
+    <string name="flaticonـlogo">&#xf111;</string>
+    <string name="flaticonـmapـpoint">&#xf112;</string>
+    <string name="flaticonـmoney">&#xf113;</string>
+    <string name="flaticonـmoneyـ1">&#xf114;</string>
+    <string name="flaticonـmoneyـ2">&#xf115;</string>
+    <string name="flaticonـmoneyـ3">&#xf116;</string>
+    <string name="flaticonـnation">&#xf117;</string>
+    <string name="flaticonـshapes">&#xf118;</string>
+    <string name="flaticonـshopping">&#xf119;</string>
+    <string name="flaticonـsign">&#xf11a;</string>
+    <string name="flaticonـsignـ1">&#xf11b;</string>
+    <string name="flaticonـsignـ2">&#xf11c;</string>
+    <string name="flaticonـsignature">&#xf11d;</string>
+    <string name="flaticonـsymbol">&#xf11e;</string>
+    <string name="flaticonـtag">&#xf11f;</string>
+    <string name="flaticonـtagـ1">&#xf120;</string>
+    <string name="flaticonـtransport">&#xf121;</string>
+    <string name="flaticonـupـarrow">&#xf122;</string>
+
+</resources>

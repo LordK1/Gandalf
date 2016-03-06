@@ -35,7 +35,6 @@ public class TabLayoutOnPageChangeListener implements ViewPager.OnPageChangeList
 
     @Override
     public void onPageScrollStateChanged(int state) {
-
         mPreviousScrollState = mScrollState;
         mScrollState = state;
 
@@ -43,9 +42,9 @@ public class TabLayoutOnPageChangeListener implements ViewPager.OnPageChangeList
 
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-        Log.i(MainActivity.TAG, "onPageScrolled : " + position
+        /*Log.i(MainActivity.TAG, "onPageScrolled : " + position
                 + " positionOffset : " + positionOffset
-                + " positionOffsetPixels :" + positionOffsetPixels);
+                + " positionOffsetPixels :" + positionOffsetPixels);*/
         final TabLayout tabLayout = mTabLayoutRef.get();
         if (tabLayout != null) {
             // Update the scroll position, only update the text selection if we're being
@@ -61,9 +60,9 @@ public class TabLayoutOnPageChangeListener implements ViewPager.OnPageChangeList
     public void onPageSelected(int position) {
         final TabLayout tabLayout = mTabLayoutRef.get();
         if (tabLayout != null && tabLayout.getSelectedTabPosition() != position) {
-// Select the tab, only updating the indicator if we're not being dragged/settled
+            // Select the tab, only updating the indicator if we're not being dragged/settled
             // (since onPageScrolled will handle that).
-//                mTabLayout.setScrollPosition(position, 0, true);
+            //                mTabLayout.setScrollPosition(position, 0, true);
             selectTab(tabLayout.getTabAt(position), mScrollState == ViewPager.SCROLL_STATE_IDLE);
             final int tabCount = tabLayout.getChildCount();
             if (position < tabCount && !mTabLayoutRef.get().getChildAt(position).isSelected()) {

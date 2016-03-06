@@ -1,9 +1,44 @@
-<resources>>
+<resources xmlns:tools="http://schemas.android.com/tools">>
 
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
+
+        <!--to enable window content transition-->
+        <!--<item name="android:windowActivityTransitions">true</item>
+        <item name="android:windowContentTransitions">true</item>
+        <item name="android:windowAllowReturnTransitionOverlap">true</item>
+
+        &lt;!&ndash;specify enter and exit transition&ndash;&gt;
+        <item name="android:windowEnterTransition">@transition/explode</item>
+        <item name="android:windowExitTransition">@transition/explode</item>
+
+        &lt;!&ndash;Specify shared element transitions&ndash;&gt;
+        <item name="android:windowSharedElementEnterTransition">
+            @transition/change_image_transform
+        </item>
+        <item name="android:windowSharedElementExitTransition">
+            @transition/change_image_transform
+        </item>-->
     </style>
+
+    <!--Sample of using Material Themes-->
+    <style name="AppTheme.Base" parent="android:Theme.Material" tools:targetApi="lollipop">
+        <!--to enable window content transition-->
+        <item name="android:windowActivityTransitions">true</item>
+        <!--specify enter and exit transition-->
+        <item name="android:windowEnterTransition">@transition/explode</item>
+        <item name="android:windowExitTransition">@transition/explode</item>
+
+        <!--Specify shared element transitions-->
+        <item name="android:windowSharedElementEnterTransition">
+            @transition/change_image_transform
+        </item>
+        <item name="android:windowSharedElementExitTransition">
+            @transition/change_image_transform
+        </item>
+    </style>
+
 </resources>

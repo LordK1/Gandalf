@@ -56,10 +56,11 @@
         android:layout_weight="25"
         android:drawablePadding="0dp"
         android:gravity="center"
-        android:text="داشبورد"
+        android:text="@string/ic_add"
         android:textAlignment="center"
         android:textColor="@color/white"
-        app:typeface="fonts/Divani.ttf" />
+        app:showTextRef="@color/colorAccent"
+        app:typeface="fonts/material-icon-font.ttf" />
 
 
 </LinearLayout>

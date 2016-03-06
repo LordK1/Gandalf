@@ -2,5 +2,6 @@
 <resources>
     <declare-styleable name="TypefaceTextView">
         <attr name="typeface" format="string"></attr>
+        <attr name="showTextRef" format="reference"></attr>
     </declare-styleable>
 </resources>
