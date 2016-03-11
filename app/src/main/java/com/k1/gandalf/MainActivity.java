@@ -21,6 +21,7 @@ import android.widget.TextView;
 
 import com.k1.gandalf.callback.TabLayoutOnPageChangeListener;
 import com.k1.gandalf.fragment.PlaceholderFragment;
+import com.k1.gandalf.module.VehicleComponent;
 import com.k1.gandalf.view.RTLViewPager;
 import com.mikepenz.actionitembadge.library.ActionItemBadge;
 import com.mikepenz.actionitembadge.library.ActionItemBadgeAdder;
@@ -74,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
 
-
+        VehicleComponent vehicleComponent = Dagger_V
         months = DateFormatSymbols.getInstance().getMonths();
         // Create the mFuckinAdapter that will return a fragment for each of the three
         // primary sections of the activity.

@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt' //needed for source code generation
 
 android {
     compileSdkVersion 23
@@ -12,6 +13,10 @@ android {
         versionName "1.0"
     }
     buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -20,10 +25,14 @@ android {
 }
 
 dependencies {
+    apt 'com.google.dagger:dagger-compiler:2.0.1' //needed for source code generation
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.android.support:design:23.1.1'
+    compile 'com.google.dagger:dagger:2.0.1' //dagger itself
+    // ButterKnife
+    compile 'com.jakewharton:butterknife:7.0.1'
     //ActionItemBadge
     compile 'com.mikepenz:actionitembadge:3.2.2@aar'
     //SUB-DEPENDENCIES
