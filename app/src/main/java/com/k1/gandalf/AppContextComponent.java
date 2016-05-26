@@ -8,6 +8,7 @@ import android.location.LocationManager;
  */
 public interface AppContextComponent {
 
+
     CustomApplication application(); //provision method
 
     Context applicationContext();//provision method

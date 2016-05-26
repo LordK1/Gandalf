@@ -75,7 +75,6 @@ public class MainActivity extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
 
-        VehicleComponent vehicleComponent = Dagger_V
         months = DateFormatSymbols.getInstance().getMonths();
         // Create the mFuckinAdapter that will return a fragment for each of the three
         // primary sections of the activity.
